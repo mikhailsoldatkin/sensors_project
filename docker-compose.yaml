@@ -9,8 +9,6 @@ services:
       - sensors_network
     env_file:
       - .env
-    volumes:
-      - ./collector:/app/collector
 
   sensors:
     build:
@@ -24,8 +22,6 @@ services:
       - sensors_network
     env_file:
       - .env
-    volumes:
-      - ./sensors:/app/sensors
 
 networks:
   sensors_network:

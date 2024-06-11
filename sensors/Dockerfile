@@ -2,6 +2,8 @@ FROM golang:1.22 as builder
 
 WORKDIR /app
 
+RUN apt-get update
+
 COPY go.mod go.sum ./
 
 RUN go mod download
@@ -13,7 +15,7 @@ RUN CGO_ENABLED=0 GOOS=linux go build -o sensors .
 
 FROM alpine:latest
 
-WORKDIR /root/
+WORKDIR /app
 
 COPY --from=builder /app/sensors .
 
