@@ -7,7 +7,7 @@ COPY go.mod go.sum ./
 RUN go mod download
 
 COPY main.go .
-COPY pkg/ /app/pkg/
+COPY proto/ /app/proto
 
 RUN CGO_ENABLED=0 GOOS=linux go build -o sensors .
 

@@ -7,7 +7,7 @@ import (
 	"net"
 	"os"
 
-	pb "collector/pkg"
+	pb "collector/proto"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/metadata"

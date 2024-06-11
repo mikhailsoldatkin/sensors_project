@@ -2,9 +2,9 @@
 // versions:
 // - protoc-gen-go-grpc v1.4.0
 // - protoc             v4.24.4
-// source: collector/api/sensors.proto
+// source: collector/sensors.proto
 
-package pkg
+package proto
 
 import (
 	context "context"
@@ -140,5 +140,5 @@ var SensorService_ServiceDesc = grpc.ServiceDesc{
 			ClientStreams: true,
 		},
 	},
-	Metadata: "collector/api/sensors.proto",
+	Metadata: "collector/sensors.proto",
 }

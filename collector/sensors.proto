@@ -4,7 +4,7 @@ import "google/protobuf/timestamp.proto";
 
 package api;
 
-option go_package = "sensors/pkg";
+option go_package = "collector/proto";
 
 service SensorService {
   rpc StreamSensorData (stream SensorData) returns (Empty) {}
