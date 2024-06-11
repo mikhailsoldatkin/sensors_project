@@ -38,17 +38,6 @@ docker-compose.local.yml
 Dockerfile.*
 *.tar
 
-# Ignore vendor folder if not using go modules
-/vendor/
-
-# Ignore node_modules if using Node.js for front-end or tools
-node_modules/
-
-# Ignore build artifacts
-/build/
-/dist/
-/release/
-
 # Ignore IDE project files
 *.idea/
 *.vscode/
@@ -57,9 +46,6 @@ node_modules/
 
 # Ignore Go coverage tool files
 profile.out
-
-# Ignore protobuff generated files
-*.pb.go
 
 # Ignore temporary files and directories
 *.swp
@@ -79,10 +65,6 @@ config.local.yaml
 *.dll
 *.so
 
-# Ignore gRPC generated files if generated in a specific directory
-/protos/*.pb.go
-/protos/*.grpc.go
-
 # Ignore other unimportant files
 *.out
 *.lock
@@ -90,21 +72,9 @@ config.local.yaml
 *.seed
 *.cover
 
-# Ignore modules vendored in `vendor` directory
-vendor/
-
 # Ignore output of the go coverage tool, specifically when used with Coveralls.io
 cover/
-
-# Ignore custom build or runtime files
-custom_build/
-
-# Ignore private files
-/private/
 
 # Ignore temporary files and directories
 /temp/
 .tmp/
-
-# Ignore logs and other temporary files
-*.temp
