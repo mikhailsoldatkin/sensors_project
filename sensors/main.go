@@ -14,7 +14,7 @@ import (
 	"google.golang.org/grpc/credentials/insecure"
 	"google.golang.org/grpc/metadata"
 	"google.golang.org/protobuf/types/known/timestamppb"
-	pb "sensors/pkg/api"
+	pb "sensors/pkg"
 )
 
 var (

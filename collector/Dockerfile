@@ -6,8 +6,8 @@ COPY go.mod go.sum ./
 
 RUN go mod download
 
-COPY cmd/main.go .
-COPY pkg/api /app/pkg/api
+COPY main.go .
+COPY pkg/ /app/pkg
 
 RUN CGO_ENABLED=0 GOOS=linux go build -o collector .
 

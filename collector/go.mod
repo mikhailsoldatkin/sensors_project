@@ -1,4 +1,4 @@
-module data_collector
+module collector
 
 go 1.22
 

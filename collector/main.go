@@ -7,7 +7,7 @@ import (
 	"net"
 	"os"
 
-	pb "data_collector/pkg/api"
+	pb "collector/pkg"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/metadata"
@@ -18,9 +18,7 @@ type server struct {
 	pb.UnimplementedSensorServiceServer
 }
 
-var (
-	password = "password"
-)
+var password = "password" // TODO change
 
 func (s *server) StreamSensorData(stream pb.SensorService_StreamSensorDataServer) error {
 
