@@ -1,0 +1,32 @@
+services:
+  data_collector:
+    build:
+      context: ./${COLLECTOR_CONTAINER}
+    container_name: ${COLLECTOR_CONTAINER}
+    ports:
+      - "${COLLECTOR_PORT}:${COLLECTOR_PORT}"
+    networks:
+      - sensors_network
+    env_file:
+      - .env
+    volumes:
+      - ./collector:/app/collector
+
+  sensors:
+    build:
+      context: ./${SENSORS_CONTAINER}
+    container_name: ${SENSORS_CONTAINER}
+    ports:
+      - "${SENSORS_PORT}:${SENSORS_PORT}"
+    depends_on:
+      - data_collector
+    networks:
+      - sensors_network
+    env_file:
+      - .env
+    volumes:
+      - ./sensors:/app/sensors
+
+networks:
+  sensors_network:
+    driver: bridge
