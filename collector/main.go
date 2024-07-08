@@ -9,29 +9,13 @@ import (
 
 	pb "collector/proto"
 	"google.golang.org/grpc"
-	"google.golang.org/grpc/codes"
-	"google.golang.org/grpc/metadata"
-	"google.golang.org/grpc/status"
 )
 
 type server struct {
 	pb.UnimplementedSensorServiceServer
 }
 
-var password = "password" // TODO change
-
 func (s *server) StreamSensorData(stream pb.SensorService_StreamSensorDataServer) error {
-
-	md, ok := metadata.FromIncomingContext(stream.Context())
-	if !ok {
-		return status.Errorf(codes.Unauthenticated, "missing metadata")
-	}
-
-	p := md["password"]
-	if p[0] != password {
-		log.Println("Authentication failed")
-		return status.Errorf(codes.Unauthenticated, "wrong password")
-	}
 
 	for {
 		sensorData, err := stream.Recv()

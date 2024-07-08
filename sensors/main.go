@@ -12,13 +12,11 @@ import (
 
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
-	"google.golang.org/grpc/metadata"
 	"google.golang.org/protobuf/types/known/timestamppb"
 	pb "sensors/proto"
 )
 
 var (
-	password           = os.Getenv("SENSORS_PASSWORD")
 	collectorPort      = os.Getenv("COLLECTOR_PORT")
 	collectorContainer = os.Getenv("COLLECTOR_CONTAINER")
 	numCPU             = runtime.NumCPU()
@@ -84,10 +82,7 @@ func main() {
 
 	client := pb.NewSensorServiceClient(conn)
 
-	md := metadata.New(map[string]string{"password": password})
-	streamCtx := metadata.NewOutgoingContext(context.Background(), md)
-
-	stream, err := client.StreamSensorData(streamCtx)
+	stream, err := client.StreamSensorData(context.Background())
 	if err != nil {
 		log.Fatalf("Failed to create stream: %v", err)
 	}
