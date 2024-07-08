@@ -5,6 +5,7 @@ import "google/protobuf/empty.proto";
 
 package api;
 
+// TODO change package and path for generated files (with Make file)
 option go_package = "collector/proto";
 
 service SensorService {

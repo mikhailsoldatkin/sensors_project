@@ -16,6 +16,7 @@ import (
 	pb "sensors/proto"
 )
 
+// TODO library for envs
 var (
 	collectorPort      = os.Getenv("COLLECTOR_PORT")
 	collectorContainer = os.Getenv("COLLECTOR_CONTAINER")
@@ -49,6 +50,7 @@ func generateSensorData(ctx context.Context, sensor Sensor, stream pb.SensorServ
 				Timestamp: timestamppb.Now(),
 			}
 			if err := stream.Send(data); err != nil {
+				// TODO use slog library for logs
 				log.Fatalf("Failed to send data: %v", err)
 			}
 			time.Sleep(dataGenerationRate)
@@ -82,13 +84,13 @@ func main() {
 
 	client := pb.NewSensorServiceClient(conn)
 
-	stream, err := client.StreamSensorData(context.Background())
+	ctx, cancel := context.WithCancel(context.Background())
+	defer cancel()
+
+	stream, err := client.StreamSensorData(ctx)
 	if err != nil {
 		log.Fatalf("Failed to create stream: %v", err)
 	}
-
-	ctx, cancel := context.WithCancel(context.Background())
-	defer cancel()
 
 	sensors := createSensors(numberOfSensors)
 	jobs := make(chan Sensor)
